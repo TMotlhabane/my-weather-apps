@@ -1,3 +1,15 @@
+function formDate(timestamp){
+let date = new Date(timestamp);
+let hours = date.getHours();
+if (hours < 10){hours = `0${hours}`};
+let minutes = date.getMinutes ();
+if (minutes < 10){minutes = `0${minutes}`} ;
+let days = [`Sunday`,`Monday`, `Tuesday`, `Wednesday`, `Thursday` , `Friday`, `Saturday`];
+let day= days[date.getDay()];
+
+return `${day}, ${hours}:${minutes}`;
+}
+
 function updateWeather(response){
     let townId = (response.data.name);
     let town = document.querySelector(`#town`);
@@ -25,18 +37,20 @@ axios.get(apiUrl).then(updateWeather);
 
 function getTemperature(response) { console.log(response.data);
     let temperature = Math.round(response.data.main.temp);
-    let h2 = document.querySelector(`h2`);
-    h2.innerHTML = (`${temperature} °C`);
+    let h3 = document.querySelector(`h3`);
+    h3.innerHTML = (`${temperature} °C`);
 
     description(response);
 };
 
 function description(response){
     let tempDescription = (response.data.weather[0].description);
-    let h3 = document.querySelector(`h3`);
-    h3.innerHTML = (`${tempDescription}`);
+    let h4 = document.querySelector(`h4`);
+    h4.innerHTML = (`${tempDescription}`);
     let h1 = document.querySelector(`h1`);
     h1.innerHTML = response.data.name
+    let h2 = document.querySelector(`h2`);
+    h2.innerHTML= formDate (response.data.dt * 1000);
 
     getHumidity(response)
     getWind(response)
