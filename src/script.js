@@ -29,9 +29,9 @@ function handleButton(){
 
 function buttonFunction(position){ 
     let lat = (response.coord.lat);
-    let lon= (response.coord.lon);
+    let lon = (response.coord.lon);
     let apiKey = (`540c88386d3856c60e763ebebac0656f`);
-let apiUrl =  ( `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`);
+let apiUrl = (`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`);
 axios.get(apiUrl).then(updateWeather);
 };
 
@@ -51,7 +51,9 @@ function description(response){
     h1.innerHTML = response.data.name
     let h2 = document.querySelector(`h2`);
     h2.innerHTML= formDate (response.data.dt * 1000);
+    let iconElement = document.querySelector(`#icon`);
 
+    iconElement.setAttribute("src", `https://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`)
     getHumidity(response)
     getWind(response)
     getPrecipitation(response)
