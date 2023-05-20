@@ -36,9 +36,9 @@ axios.get(apiUrl).then(updateWeather);
 };
 
 function getTemperature(response) { console.log(response.data);
-    let temperature = Math.round(response.data.main.temp);
-    let h3 = document.querySelector(`h3`);
-    h3.innerHTML = (`${temperature} °C`);
+    let celciusTemperature = Math.round(response.data.main.temp);
+    let h3 = document.querySelector(`#h3`);
+    h3.innerHTML = (celciusTemperature);
 
     description(response);
 };
@@ -97,8 +97,32 @@ let apiUrl = (`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=$
 axios.get(apiUrl).then(getTemperature);
 };
 
+function showFahrenheitTemperature(event){
+event.preventDefault();
+let temperatureElement = document.querySelector(`#h3`);
+let FahrenheitTemperature = (celciusTemperature * 9) / 5 + 32 ;
+
+temperatureElement.innerHTML = Math.round (FahrenheitTemperature); 
+};
+
+
+function showCelciusTemperature(event){
+event.preventDefault();
+let temperatureElement = document.querySelector(`#h3`);
+temperatureElement.innerHTML = Math.round(celciusTemperature);
+
+};
+
+let celciusTemperature = null;
+
 let form = document.querySelector (`#entryForm`);
 form.addEventListener (`submit` , formFunction);
 
 let button = document.querySelector(`button`);
 button.addEventListener(`click`, handleButton);
+
+let fahrenheitLink = document.querySelector("#fahrenheitLink");
+fahrenheitLink.addEventListener(`click`, showFahrenheitTemperature);
+
+let celciusLink = document.querySelector("#celciusLink");
+celciusLink.addEventListener(`click`, showCelciusTemperature);
