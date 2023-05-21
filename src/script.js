@@ -36,7 +36,7 @@ axios.get(apiUrl).then(updateWeather);
 };
 
 function getTemperature(response) { console.log(response.data);
-    let celciusTemperature = Math.round(response.data.main.temp);
+     celciusTemperature = Math.round(response.data.main.temp);
     let h3 = document.querySelector(`#h3`);
     h3.innerHTML = (celciusTemperature);
 
@@ -99,6 +99,9 @@ axios.get(apiUrl).then(getTemperature);
 
 function showFahrenheitTemperature(event){
 event.preventDefault();
+
+fahrenheitLink.classList.add("active");
+celciusLink.classList.remove("active");
 let temperatureElement = document.querySelector(`#h3`);
 let FahrenheitTemperature = (celciusTemperature * 9) / 5 + 32 ;
 
@@ -108,12 +111,15 @@ temperatureElement.innerHTML = Math.round (FahrenheitTemperature);
 
 function showCelciusTemperature(event){
 event.preventDefault();
+
+celciusLink.classList.add("active");
+fahrenheitLink.classList.remove("active");
 let temperatureElement = document.querySelector(`#h3`);
 temperatureElement.innerHTML = Math.round(celciusTemperature);
 
 };
 
-let celciusTemperature = null;
+ celciusTemperature = null;
 
 let form = document.querySelector (`#entryForm`);
 form.addEventListener (`submit` , formFunction);
