@@ -39,6 +39,24 @@ button { border-radius: 10px;
 
 }
 
+#h3{ font-size: 25px;
+
+}
+
+
 ul { list-style-type: none;
 
+}
+
+#forecastDate{
+    font-size: 16px;
+    opacity:0.5;
+}
+
+#minTemp{
+    opacity: 0.5;
+}
+
+#forcastTemperatures{
+    font-size: 13px;
 }
