@@ -119,7 +119,30 @@ temperatureElement.innerHTML = Math.round(celciusTemperature);
 
 };
 
+function displayForecast(){
+let forecastElement=document.querySelector("#weatherForecast");
+let forecastHTML= `<div class="row">`;
+let days = ["Wed" , "Thurs", "Fri","Sat"];
+days.forEach (function (day){
+forecastHTML = forecastHTML + `
+<div class= "col-2">
+<div id="forecastDate">
+${day}
+</div>
+<img src= "https://openweathermap.org/img/wn/10d@2x.png" alt="" width="42" />
+<div id="forcastTemperatures">
+    <span id="maxTemp">18°</span><span id = "minTemp">12°</span>
+</div>
+</div>
+    `
+});
+
+forecastHTML=forecastHTML+ `</div>`;
+    forecastElement.innerHTML = forecastHTML
+};
+
  celciusTemperature = null;
+displayForecast();
 
 let form = document.querySelector (`#entryForm`);
 form.addEventListener (`submit` , formFunction);
