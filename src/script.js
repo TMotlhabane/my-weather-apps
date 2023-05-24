@@ -38,7 +38,7 @@ axios.get(apiUrl).then(updateWeather);
 function getTemperature(response) { console.log(response.data);
      celciusTemperature = Math.round(response.data.main.temp);
     let h3 = document.querySelector(`#h3`);
-    h3.innerHTML = (celciusTemperature);
+    h3.innerHTML = `${celciusTemperature}°`;
 
     description(response);
 };
@@ -57,6 +57,7 @@ function description(response){
     getHumidity(response)
     getWind(response)
     getPrecipitation(response)
+    getForecast(response.data.coord)
 };
  
 function getHumidity(response){
@@ -82,13 +83,21 @@ function getPrecipitation(response){
 
 };
 
+function getForecast(coordinates){
+console.log(coordinates)
+let apiKey= (`540c88386d3856c60e763ebebac0656f`);
+let apiUrl= (`https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`);
+
+axios.get(apiUrl).then(displayForecast);
+};
+
 function formFunction(event){ event.preventDefault();
     let city = document.querySelector(`#input1`).value;
     let h1 = document.querySelector (`h1`);
     h1.innerHTML =(`${city}`);
 
     api(city);
-}   
+}  ; 
 
 function api (city){
 let apiKey = (`540c88386d3856c60e763ebebac0656f`);
@@ -118,31 +127,43 @@ let temperatureElement = document.querySelector(`#h3`);
 temperatureElement.innerHTML = Math.round(celciusTemperature);
 
 };
+function formatForecastDay(timestamp){
+    let date = new Date(timestamp * 1000);
+    let day = date.getDay();
+let days =["Sun", "Mon", "Tues", "Wed", "Thurs", "Fri", "Sat"];
 
-function displayForecast(){
-let forecastElement=document.querySelector("#weatherForecast");
+return days[day]
+
+};
+
+function displayForecast(response){
+    let forecast = response.data.daily;
+
+    let forecastElement=document.querySelector("#weatherForecast");
 let forecastHTML= `<div class="row">`;
-let days = ["Wed" , "Thurs", "Fri","Sat"];
-days.forEach (function (day){
+
+forecast.forEach (function (forecastDay, index){
+if (index <6) 
+{
 forecastHTML = forecastHTML + `
 <div class= "col-2">
 <div id="forecastDate">
-${day}
+${formateForecastDay(forecastDay.dt)}
 </div>
-<img src= "https://openweathermap.org/img/wn/10d@2x.png" alt="" width="42" />
+<img src= "https://openweathermap.org/img/wn/${forecast.weather[0].icon}@2x.png" alt="" width="42" />
 <div id="forcastTemperatures">
-    <span id="maxTemp">18°</span><span id = "minTemp">12°</span>
+    <span id="maxTemp">${Math.round(forecastDay.temp.max)}°</span><span id = "minTemp">${Math.round(forecastDay.temp.min)}°</span>
 </div>
 </div>
-    `
-});
+    `}
+}) ;
 
 forecastHTML=forecastHTML+ `</div>`;
     forecastElement.innerHTML = forecastHTML
 };
 
  celciusTemperature = null;
-displayForecast();
+ 
 
 let form = document.querySelector (`#entryForm`);
 form.addEventListener (`submit` , formFunction);
