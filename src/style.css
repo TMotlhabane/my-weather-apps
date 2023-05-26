@@ -1,12 +1,14 @@
-.weather-app-wrapper {max-width: 600px;
-    margin: 30px auto;
-
+.weather-app-wrapper {max-width: 630px;
+    margin: 100px auto;
+background-image: url("../media/cloudy2.jpg");
 }
 
-.my-weather-apps  {
+.my-weather-app {
 padding: 20px;
 border: 1px solid #dadde1;
-background-image: url("../media/cloudy2.jpg");
+background-color: #fff;
+box-shadow: 10px 5px 5px #8a8888;
+opacity: 0.8;
 }
  
 html, body {
