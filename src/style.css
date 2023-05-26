@@ -11,7 +11,7 @@ box-shadow: 10px 5px 5px #8a8888;
 opacity: 0.8;
 }
  
-html, body {
+html, body { font-family: 'Playfair Display', serif;
     display: block;
     margin: auto;
     text-align: center;
@@ -23,6 +23,10 @@ html, body {
     padding: 40px;
 
 }
+#input1{ border-radius: 10px;
+margin: 10px;
+    padding: 2px 5px;
+}
 
 #searchButton { border-radius: 10px;
     margin: 10px;
@@ -30,11 +34,6 @@ html, body {
 
 }
 
-button { border-radius: 10px;
-    margin: 10px;
-    padding: 2px 5px;
-
-}
 
 #row1{ padding: 20px;
     margin: 20px;
@@ -61,4 +60,8 @@ ul { list-style-type: none;
 
 #forcastTemperatures{
     font-size: 13px;
+}
+
+#conditions{ font-size : 16px;
+
 }
