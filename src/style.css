@@ -1,9 +1,12 @@
-.weather-app-wrapper {max-width: 630px;
-    margin: 100px auto;
-background-image: url("../media/cloudy2.jpg");
+.weather-app-wrapper {max-width: 600px;
+    margin: 10px auto;
 }
 
-.my-weather-app {
+.background {background-image: url("../media/cloudy2.jpg");
+
+}
+
+.my-weather-apps {
 padding: 20px;
 border: 1px solid #dadde1;
 background-color: #fff;
@@ -11,21 +14,20 @@ box-shadow: 10px 5px 5px #8a8888;
 opacity: 0.8;
 }
  
-html, body { font-family: 'Playfair Display', serif;
-    display: block;
+html, body { font-family: 'DM Sans', sans-serif;
+     display: block;
     margin: auto;
     text-align: center;
-    padding: 40px;
-    
-}
-
-#entryForm { text-align: left;
-    padding: 40px;
 
 }
-#input1{ border-radius: 10px;
-margin: 10px;
-    padding: 2px 5px;
+
+#entryForm { text-align: left ;
+    padding: 40px;
+
+}
+
+#input1 {
+    border-radius: 10px;
 }
 
 #searchButton { border-radius: 10px;
